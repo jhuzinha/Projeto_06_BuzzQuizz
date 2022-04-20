@@ -94,7 +94,7 @@ header h1 {
     margin-left: 17px;
 }
 
-.user-quizzes {
+.quizzes {
     width: 100%;
     display: flex;
     justify-content: left;
@@ -121,6 +121,15 @@ header h1 {
     line-height: 22px;
     color: #FFFFFF;
     font-weight: 400;
+}
+
+.all-quizzes {
+    margin-top: 50px;
+    width: 100%;
+}
+
+.all-quizzes h3 {
+    margin-bottom: 12px;
 }
 
 
