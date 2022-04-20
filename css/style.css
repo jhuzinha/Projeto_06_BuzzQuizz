@@ -47,7 +47,7 @@ header h1 {
 
 /* TELA 1 */
 
-.container {
+.container-tela-1 {
     width: 1051px;
     margin: 0 auto;
 }
@@ -281,8 +281,25 @@ h4 {
 
 @media (max-width: 1100px) {
     /* TELA 1 */
-    .container {
+    .container-tela-1 {
         width: 100%;
+        padding: 0 18px;
+    }
+
+    .quizzes {
+        flex-direction: column;
+        flex-wrap: nowrap;
+    }
+
+    .quizz-figure, .quizz-image {
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+    .quizz-figure h4 {
+        width: 100%;
+        padding-right: 10%;
     }
 
     .title-user-quizzes {
