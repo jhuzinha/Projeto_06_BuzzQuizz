@@ -7,6 +7,7 @@ body {
     font-family: 'Roboto', sans-serif;
     width: 100%;
     background: #fafafa;
+    overflow-x: hidden;
 }
 
 input {
@@ -149,6 +150,7 @@ header h1 {
 .quizz-banner {
     width: 100%;
     height: 227px;
+    margin-top: 69px;
     overflow: hidden;
     position: relative;
     display: flex;
@@ -187,8 +189,9 @@ header h1 {
 
 .question {
     margin-top: 25px;
+    margin-bottom: 44px;
     width: 759px;
-    height: 676px;
+    height: auto;
     padding: 28px 34px;
     background-color: #FFFFFF;
     box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.05)
@@ -198,14 +201,14 @@ header h1 {
     padding: 0 10px;
     width: 100%;
     height: 138px;
-    background-color: #434CA0;
+    background-color: #434CA0; /* Usuário que escolhe a cor */
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.question-title h5 {
+.question-title h5, .quizz-results h5 {
     color: white;
     font-weight: 700;
     font-size: 23px;
@@ -215,7 +218,7 @@ header h1 {
 .answers {
     margin-top: 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* ou space-around */
     flex-wrap: wrap;
 }
 
@@ -224,7 +227,7 @@ header h1 {
     height: 175px;
     display: block;
     margin: 0;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
     border-radius: 0;
     position: initial;
 }
@@ -232,6 +235,7 @@ header h1 {
 .answer-item img {
     width: 330px;
     height: 175px;
+    object-fit: cover;
 }
 
 .answer-item figcaption {
@@ -239,6 +243,78 @@ header h1 {
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
+}
+
+.quizz-results {
+    margin-bottom: 58px;
+    width: 759px;
+    height: auto;
+    padding: 18px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.05)
+}
+
+.results-title {
+    width: 100%;
+    height: 100px;
+    background-color: #EC362D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.level {
+    margin-top: 18px;
+    display: flex;
+}
+
+.level img {
+    width: 364px;
+    height: 273px;
+    margin-right: 21px;
+    object-fit: cover;
+}
+
+.level p {
+    text-align: left;
+    font-size: 19px;
+    line-height: 25px;
+    font-weight: 700;
+    color: #484848;   
+}
+
+.nav-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-restart {
+    width: 260px;
+    height: 52px;
+    margin-bottom: 20px;
+    background: #EC362D;
+    border: none;
+    border-radius: 15px;
+    color: #FFF5F4;
+    font-size: 21px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button-home {
+    height: 44px;
+    font-size: 21px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    color: #818181;
+    background-color: #fafafa;
 }
 
 /* TELA 3 */
@@ -388,6 +464,11 @@ h4 {
 }
 
 @media (max-width: 1100px) {
+
+    header h1 {
+        font-size: 37px;
+    }
+
     /* TELA 1 */
     .container-tela-1 {
         width: 100%;
@@ -428,14 +509,16 @@ h4 {
         font-size: 23px;
         line-height: 27px;
         text-align: center;
+        margin: 0 10px;
     }
 
     .quizz-banner, .quizz-banner img {
         height: 142px;
     }
 
-    .question {
+    .question, .quizz-results {
         width: 100%;
+        height: auto;
         padding: 18px;
     }
     
@@ -443,9 +526,59 @@ h4 {
         height: 89px;
     }
 
-    .question-title h5 {
+    .question-title h5, .results-title h5 {
         font-size: 19px;
     }
 
-    
+    .answers {
+        height: auto;
+    }
+
+    .answer-item{
+        width: 47%;
+        height: 50%;
+        margin-bottom: 0;
+    }
+
+    .answer-item img {
+        width: 100%;
+        height: 50%;
+    }
+
+    .answer-item figcaption {
+        width: 100%;
+        margin: 5px 0 10px 0;
+        font-size: 19px;
+    }
+
+    .quizz-results {
+        margin-bottom: 34px;
+    }
+
+    .results-title {
+        padding: 0 10px;
+    }
+
+    .level {
+        flex-direction: column;
+    }
+
+    .level img {
+        width: 100%;
+        height: auto;
+        margin-bottom: 15px;
+    }
+
+    .level p {
+        font-size: 17px;
+    }
+
+    .button-restart {
+        width: 220px;
+    }
+
+    .button-home {
+        font-size: 19px;
+    }
+
 }
