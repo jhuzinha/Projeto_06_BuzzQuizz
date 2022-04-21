@@ -23,8 +23,11 @@ function buscarQuizzes() {
     promise.then(listarQuizzes);
 }
 
-function exibirQuizz (quizz) {
+function selecionarResposta (el) {
 
+}
+
+function exibirQuizz (quizz) {
     const quizzBanner = document.querySelector(".quizz-banner");
     quizzBanner.innerHTML = "";
     quizzBanner.innerHTML += `
@@ -35,16 +38,23 @@ function exibirQuizz (quizz) {
     const containerTela2 = document.querySelector(".container-tela-2");
     containerTela2.innerHTML = "";
     for (let i = 0; i < quizz.questions.length; i++) {
-        //separar respostas numa variável
-        let respostas = "";
+    //Percorrendo as perguntas
+        let respostas = ""; 
         quizz.questions[i].answers.sort(comparador);
         for (let j = 0; j < quizz.questions[i].answers.length; j++) {
+            //Percorrendo as respostas da pergunta
+            const ehCorreta = quizz.questions[i].answers[j].isCorrectAnswer;
+            let estado;
+            if (ehCorreta) {
+                estado = "correto";
+            } else {
+                estado = "falso";
+            }
             respostas += `
-            <figure class="answer-item">
+            <figure class="answer-item ${estado}">
                 <img src="${quizz.questions[i].answers[j].image}">
                 <p class="answer-text">${quizz.questions[i].answers[j].text}</p>
-            </figure>
-            `; 
+            </figure>`; 
         }
 
         containerTela2.innerHTML += `
