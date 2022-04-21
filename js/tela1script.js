@@ -31,13 +31,28 @@ function exibirQuizz (quizz) {
     const containerTela2 = document.querySelector(".container-tela-2");
     containerTela2.innerHTML = "";
     for (let i = 0; i < quizz.questions.length; i++) {
+        //separar respostas numa variável
+        let respostas = "";
+        for (let j = 0; j < quizz.questions[i].answers.length; j++) {
+            respostas += `
+            <figure class="answer-item">
+                <img src="${quizz.questions[i].answers[j].image}">
+                <p class="answer-text">${quizz.questions[i].answers[j].text}</p>
+            </figure>
+            `; 
+        }
+
         containerTela2.innerHTML += `
         <section class="question">
             <div class="question-title" style="background-color:${quizz.questions[i].color};">
                 <h5>${quizz.questions[i].title}</h5>
             </div>
+            <div class="answers">
+                ${respostas}
+            </div>
         </section>`;
     }
+
 }
 
 function entrarQuizz (el) {

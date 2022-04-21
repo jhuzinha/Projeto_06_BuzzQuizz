@@ -132,6 +132,7 @@ header h1 {
     line-height: 22px;
     color: #FFFFFF;
     font-weight: 400;
+    word-wrap: break-word;
 }
 
 .all-quizzes {
@@ -189,6 +190,7 @@ header h1 {
     color: #FFFFFF;
     position: absolute;
     z-index: 2;
+    word-break: break-all;
 }
 
 .container-tela-2 {
@@ -233,7 +235,7 @@ header h1 {
 
 .answer-item {
     width: 330px;
-    height: 175px;
+    height: auto;
     display: block;
     margin: 0;
     margin-bottom: 40px;
@@ -247,7 +249,7 @@ header h1 {
     object-fit: cover;
 }
 
-.answer-item figcaption {
+.answer-text {
     margin-top: 10px;
     font-weight: 700;
     font-size: 20px;
@@ -570,21 +572,23 @@ header h1 {
         height: auto;
     }
 
-    .answer-item{
+    .answer-item {
         width: 47%;
-        height: 50%;
+        height: auto;
         margin-bottom: 0;
     }
 
     .answer-item img {
         width: 100%;
-        height: 50%;
+        height: 200px;
+        object-fit: cover;
     }
 
-    .answer-item figcaption {
+    .answer-text {
         width: 100%;
         margin: 5px 0 10px 0;
         font-size: 19px;
+        word-wrap: break-word;
     }
 
     .quizz-results {
