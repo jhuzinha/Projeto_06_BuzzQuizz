@@ -210,7 +210,7 @@ header h1 {
     padding: 0 10px;
     width: 100%;
     height: 138px;
-    background-color: #434CA0; /* Usuário que escolhe a cor */
+    /* background-color: #434CA0; Usuário que escolhe a cor */
     text-align: center;
     display: flex;
     align-items: center;

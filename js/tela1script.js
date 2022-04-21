@@ -21,13 +21,23 @@ function buscarQuizzes() {
 
 function exibirQuizz (quizz) {
 
-    const tela2 = document.querySelector(".tela-2");
-    tela2.innerHTML = `
-    
+    const quizzBanner = document.querySelector(".quizz-banner");
+    quizzBanner.innerHTML = "";
+    quizzBanner.innerHTML += `
+    <div class="gradient-banner"></div>
+    <img src="${quizz.image}">
+    <h2>${quizz.title}</h2>`;
 
-    `;
-
-
+    const containerTela2 = document.querySelector(".container-tela-2");
+    containerTela2.innerHTML = "";
+    for (let i = 0; i < quizz.questions.length; i++) {
+        containerTela2.innerHTML += `
+        <section class="question">
+            <div class="question-title" style="background-color:${quizz.questions[i].color};">
+                <h5>${quizz.questions[i].title}</h5>
+            </div>
+        </section>`;
+    }
 }
 
 function entrarQuizz (el) {
@@ -37,7 +47,8 @@ function entrarQuizz (el) {
     //console.log(idQuizz);
 
     const quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
-    console.log(quizz);
+    //console.log(quizz);
+    exibirQuizz(quizz);
 }
 
 buscarQuizzes();
