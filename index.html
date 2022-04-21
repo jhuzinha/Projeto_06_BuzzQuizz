@@ -91,7 +91,7 @@
 
 
     <main class="quizCreation">     
-        <section class="infoQuizz hidden"> 
+        <section class="infoQuizz "> 
             <h3> Comece pelo começo </h3>
                 <li class="infoAnswers">
                     <div>
@@ -101,7 +101,7 @@
                         <input placeholder="   Quantidade de níveis do quiz  " type="numeric">
                     </div>
                 </li>
-                <button> Prosseguir pra criar perguntas </button>
+                <button onclick="trocarTela(this, '.questionsQuizz')"> Prosseguir pra criar perguntas </button>
         </section>
         
         <section class="questionsQuizz hidden">
@@ -109,9 +109,9 @@
             <li>
                 <div class="questionNumber">
                     <h3>Pergunta 1</h3>
-                    <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
+                    <img  onclick= "abrindoQuestionario(this)" src="imagens/edit.png" alt="">
                 </div>
-                <div class="answersQuizz">
+                <div class="answersQuizz hidden">
                     <input placeholder="   Texto da pergunta  "type="text">
                     <input placeholder="   Cor de fundo da pergunta  "type="text">
                     <h3>Resposta correta</h3>
@@ -127,9 +127,9 @@
                 </div>
             </li>
             <li>
-                <div class="questionNumber">
+                <div class="questionNumber ">
                     <h3>Pergunta 2</h3>
-                    <img  onclick= "" src="imagens/edit.png" alt="">
+                    <img  onclick= "abrindoQuestionario(this)" src="imagens/edit.png" alt="">
                 </div> 
                 <div class="answersQuizz hidden">
                     <input placeholder="   Texto da pergunta  "type="text">
@@ -146,7 +146,7 @@
                     <input placeholder="   URL da imagem 3  "type="url">
                 </div>  
             </li>
-            <button> Prosseguir pra criar níveis </button>
+            <button onclick="trocarTela(this, '.levelQuizz')" > Prosseguir pra criar níveis </button>
         </section>
        
         <section class="levelQuizz hidden">
@@ -154,9 +154,9 @@
             <li>
                 <div class="questionNumber">
                     <h3>Nível 1</h3>
-                    <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
+                    <img class= ""  onclick= "abrindoQuestionario(this)" src="imagens/edit.png" alt="">
                 </div>
-                <div class="levelAnswersQuizz">
+                <div class="levelAnswersQuizz hidden">
                     <input placeholder="   Texto da pergunta  "type="text">
                     <input placeholder="   Cor de fundo da pergunta  "type="text">
                     <input placeholder="   Resposta correta  "type="text">
@@ -166,7 +166,7 @@
             <li>
                 <div class="questionNumber">
                     <h3>Nível 2</h3>
-                    <img  onclick= "" src="imagens/edit.png" alt="">
+                    <img  onclick= "abrindoQuestionario(this)" src="imagens/edit.png" alt="">
                 </div> 
                 <div class="levelAnswersQuizz hidden">
                     <input placeholder="   Texto da pergunta  "type="text">
@@ -175,18 +175,18 @@
                     <input placeholder="   URL da imagem  "type="url">
                 </div>  
             </li>
-            <button> Finalizar Quizz </button>
+            <button onclick="trocarTela(this, '.successQuizz')" > Finalizar Quizz </button>
         </section>
 
-        <section class="successQuizz">
+        <section class="successQuizz hidden">
             <h3> Seu quizz está pronto! </h3>
-            <figure>
+            <figure class="gradient">
                 <img class=" position " src="imagens/imagem-teste.png" alt="">
                 <h4> O quão Potterhead é você </h4>
             </figure>
 
-            <button> Finalizar Quizz </button>
-            <p> Voltar pra Home </p>
+            <button> Acessar Quizz </button>
+            <p onclick="trocarTela(this, '.container-tela-1')"> Voltar pra Home </p>
         </section> 
     <main>
 

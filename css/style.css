@@ -34,7 +34,7 @@ header {
     position: fixed;
     left: 0;
     top: 0;
-    z-index: 3;
+    z-index: 5;
 }
 
 header h1 { 
@@ -197,6 +197,7 @@ header h1 {
     margin-top: 26px;
 }
 
+
 .awnsersQuizz, .levelAnswersQuizz {
     display: flex;
     flex-direction: column;
@@ -217,9 +218,9 @@ header h1 {
  }
 
 .questionNumber {
-     display: flex;
-     justify-content: space-between;
-     align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
  }
 
 .answersQuizz input:nth-child(1), .levelAnswersQuizz input:nth-child(1)  {
@@ -228,7 +229,7 @@ header h1 {
 
 .questionsQuizz button, .levelQuizz button{
     margin: 40px 0 40px 0;
-    background-color: #da2c23;
+    background-color: #EC362D;
     max-width: 368px;
     width: 100%;
     height: 54px;
@@ -237,7 +238,6 @@ header h1 {
     font-size: 16px;
     border: none;
  }
-
 
 .levelQuizz input {
     margin-bottom: 12px;
@@ -248,30 +248,36 @@ header h1 {
     width: 20%;
  }
 
+.questionNumber img:hover {
+    background-color: rgb(228, 123, 116);
+    border-radius: 2px;
+}
 
 .successQuizz figure {
     height: auto;
-    width: 50%;
+    width:  700px;
     margin: 50px;
     border-radius: 8px;
     position: relative;
 }
 
-figure img {
+.successQuizz img {
     width: 100%;
 }
 
-figure h4 {
+.successQuizz h4 {
     position: absolute;
     left:  20px;
     bottom: 40px;
-    z-index: 1;
+    z-index: 2;
     font-size: 20px;
     color: #ffff;
 
 }
 
-
+.successQuizz p:hover {
+    color: black;
+}
 
 .successQuizz p {
     color: #818181;
@@ -281,14 +287,17 @@ figure h4 {
     max-width: 335px;
     width: 30%;
     margin: 40px 0 40px 0;
-    background-color: #da2c23;
+    background-color: #EC362D;
     height: 54px;
     border-radius: 15px;
     color: #ffff;
-    font-size: 16px;
+    font-size: 20px;
     border: none;
 }
 
+.quizCreation button:hover{
+    background-color: rgb(248, 95, 95);
+}
 
 .hidden {
     display: none;
@@ -340,8 +349,13 @@ figure h4 {
     .answersQuizz{
         width: 100%;
     }
-    .questionsQuizz button, .levelQuizz button, .successQuizz button {
+    
+    .questionsQuizz button, .levelQuizz button {
         width: 90%;
+    }
+
+    .successQuizz button {
+        width: 84%;
     }
     .successQuizz figure {
         width: 84%;
