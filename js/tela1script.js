@@ -68,6 +68,7 @@ function entrarQuizz (el) {
 
     const quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
     //console.log(quizz);
+    window.scrollTo(0, 0);
     exibirQuizz(quizz);
 }
 
