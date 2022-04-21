@@ -1,5 +1,9 @@
 let quizzesObj = [];
 
+function comparador () { 
+	return Math.random() - 0.5; 
+}
+
 function listarQuizzes (response) {
     quizzesObj = response.data;
     console.log(quizzesObj);
@@ -33,6 +37,7 @@ function exibirQuizz (quizz) {
     for (let i = 0; i < quizz.questions.length; i++) {
         //separar respostas numa variável
         let respostas = "";
+        quizz.questions[i].answers.sort(comparador);
         for (let j = 0; j < quizz.questions[i].answers.length; j++) {
             respostas += `
             <figure class="answer-item">
