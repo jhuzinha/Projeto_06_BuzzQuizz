@@ -74,9 +74,17 @@ function calcularNivel () {
 }
 
 function reiniciarQuizz () {
-    window.scrollTo(0, 0);
     acertos = 0;
+    window.scrollTo(0, 0);
     exibirQuizz(quizz);
+}
+
+function voltarTelaInicial () {
+    acertos = 0;
+    window.scrollTo(0, 0);
+    document.querySelector(".container-tela-1").classList.remove("hidden");
+    document.querySelector(".tela-2").classList.add("hidden");
+    buscarQuizzes();
 }
 
 function exibirResultado () {
@@ -95,7 +103,7 @@ function exibirResultado () {
     </section>
     <section class="nav-buttons">
         <button class="button-restart" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-        <button class="button-home" oncliclk="voltarTelaInicial()">Voltar para home</button>
+        <button class="button-home" onclick="voltarTelaInicial()">Voltar para home</button>
     </section>`;
 
     setTimeout(function (){
