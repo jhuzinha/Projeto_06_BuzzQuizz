@@ -56,22 +56,37 @@ function removerClique (arrRespostas) {
     }
 }
 
+function calcularNivel () {
+    // const niveis = quizz.levels.length;
+    const perguntas = quizz.questions.length;
+    const porcentagem = Math.round((acertos/perguntas)*100);
+    let nivel;
 
+    for (let i = 0; i < quizz.levels.length; i++) {
+        if (porcentagem >= quizz.levels[i].minValue) {
+            nivel = i;
+        }
+    }
 
+    const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
+
+    // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
+    console.log(resultadoObj);
+    return resultadoObj;
+}
 
 function exibirResultado () {
-    calcularNivel();
+    const resultado = calcularNivel();
+    const nivel = quizz.levels[resultado.nivelIndex];
     const containerTela2 = document.querySelector(".container-tela-2");
     containerTela2.innerHTML += `
     <section class="quizz-results">
         <div class="results-title">
-            <h5>88% de acerto: Você é praticamente um aluno de Hogwarts!</h5>
+            <h5>${resultado.porcentagem}% de acerto: ${nivel.title}</h5>
         </div>
         <div class="level">
-            <img src="./imagens/potterhead.jpg">
-            <p>
-                Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.
-            </p>
+            <img src="${nivel.image}">
+            <p>${nivel.text}</p>
         </div>
     </section>
     <section class="nav-buttons">
