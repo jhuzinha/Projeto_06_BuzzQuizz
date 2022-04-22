@@ -1,5 +1,6 @@
 let quizzesObj = [];
 let acertos = 0;
+let cliques = 0;
 let quizz;
 
 function comparador () { 
@@ -47,6 +48,8 @@ function marcarResposta(campoRespostas, el) {
     if (conferirAcerto(el)) {
         acertos++;
     }
+
+    cliques++;
     console.log(acertos);
 }
 
