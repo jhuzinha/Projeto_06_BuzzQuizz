@@ -56,9 +56,40 @@ function removerClique (arrRespostas) {
     }
 }
 
+
+
+
+function exibirResultado () {
+    calcularNivel();
+    const containerTela2 = document.querySelector(".container-tela-2");
+    containerTela2.innerHTML += `
+    <section class="quizz-results">
+        <div class="results-title">
+            <h5>88% de acerto: Você é praticamente um aluno de Hogwarts!</h5>
+        </div>
+        <div class="level">
+            <img src="./imagens/potterhead.jpg">
+            <p>
+                Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.
+            </p>
+        </div>
+    </section>
+    <section class="nav-buttons">
+        <button class="button-restart">Reiniciar Quizz</button>
+        <button class="button-home">Voltar para home</button>
+    </section>`;
+
+    setTimeout(function (){
+        document.querySelector(".quizz-results").scrollIntoView({block: "start", behavior: "smooth"});
+    }, 1900)
+
+    console.log("acabou o quizz");
+}
+
 function scrollarPergunta (campoPergunta, todasPerguntas) {
     for (let i = 0; i < todasPerguntas.length; i++) {
         if (campoPergunta === todasPerguntas[todasPerguntas.length - 1]) {
+            exibirResultado();
             break;
         } // código provisório -- scroll até o resultado
         if (campoPergunta === todasPerguntas[i]) {
@@ -125,7 +156,6 @@ function exibirQuizz (quizz) {
             </div>
         </section>`;
     }
-
 }
 
 function entrarQuizz (el) {
