@@ -24,7 +24,13 @@ function buscarQuizzes() {
 }
 
 function selecionarResposta (el) {
-
+    const campoRespostas = el.parentNode;
+    const arrRespostas = campoRespostas.querySelectorAll("figure");
+    for (let i = 0; i < arrRespostas.length; i++) {
+        arrRespostas[i].style.opacity = "0.5";
+    }
+    el.style.opacity = "1";
+    console.log(arrRespostas);
 }
 
 function exibirQuizz (quizz) {
@@ -51,7 +57,7 @@ function exibirQuizz (quizz) {
                 estado = "falso";
             }
             respostas += `
-            <figure class="answer-item ${estado}">
+            <figure class="answer-item ${estado}" onclick="selecionarResposta(this)">
                 <img src="${quizz.questions[i].answers[j].image}">
                 <p class="answer-text">${quizz.questions[i].answers[j].text}</p>
             </figure>`; 

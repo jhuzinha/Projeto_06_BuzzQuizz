@@ -254,6 +254,7 @@ header h1 {
     font-weight: 700;
     font-size: 20px;
     line-height: 23px;
+    word-break: break-word;
 }
 
 .quizz-results {
