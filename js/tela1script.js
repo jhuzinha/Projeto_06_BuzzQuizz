@@ -112,7 +112,7 @@ function exibirResultado () {
     </section>`;
 
     setTimeout(function (){
-        document.querySelector(".quizz-results").scrollIntoView({block: "start", behavior: "smooth"});
+        document.querySelector(".quizz-results").scrollIntoView({block: "center", behavior: "smooth"});
     }, 1900);
 }
 
@@ -129,7 +129,7 @@ function scrollarPergunta (campoPergunta, todasPerguntas) {
 
         if (campoPergunta === todasPerguntas[i]) {
             setTimeout(function () {
-                todasPerguntas[i+1].scrollIntoView({block: "start", behavior: "smooth"});
+                todasPerguntas[i+1].scrollIntoView({block: "center", behavior: "smooth"});
             }, 1900);
         }
     }
@@ -205,6 +205,11 @@ function entrarQuizz (el) {
     //console.log(quizz);
     window.scrollTo(0, 0);
     exibirQuizz(quizz);
+}
+
+function redirecionarCriacao () {
+    document.querySelector(".container-tela-1").classList.add("hidden");
+    document.querySelector(".infoQuizz").classList.remove("hidden");
 }
 
 buscarQuizzes();

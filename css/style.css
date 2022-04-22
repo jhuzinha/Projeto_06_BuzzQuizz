@@ -217,6 +217,7 @@ header h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 
 .question-title h5, .quizz-results h5 {
@@ -224,6 +225,7 @@ header h1 {
     font-weight: 700;
     font-size: 23px;
     line-height: 27px;
+    word-break: break-all;
 }
 
 .answers {
@@ -328,6 +330,10 @@ header h1 {
     border: none;
     color: #818181;
     background-color: #fafafa;
+}
+
+.empty-user-quizzes button:hover, .title-user-quizzes ion-icon, .quizzes figure, .button-home, .button-restart {
+    cursor: pointer;
 }
 
 /* TELA 3 */
