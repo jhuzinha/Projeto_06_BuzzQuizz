@@ -1,5 +1,6 @@
 let quizzesObj = [];
 let acertos = 0;
+let quizz;
 
 function comparador () { 
 	return Math.random() - 0.5; 
@@ -57,7 +58,10 @@ function removerClique (arrRespostas) {
 
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
+    const campoPergunta = campoRespostas.parentNode;
+    const todasPerguntas = document.querySelectorAll(".question");
     const arrRespostas = campoRespostas.querySelectorAll("figure");
+
     for (let i = 0; i < arrRespostas.length; i++) {
         arrRespostas[i].style.opacity = "0.5";
     }
@@ -65,6 +69,18 @@ function selecionarResposta (el) {
 
     removerClique(arrRespostas);
     marcarResposta(campoRespostas, el);
+
+
+    for (let i = 0; i < todasPerguntas.length; i++) {
+        if (campoPergunta === todasPerguntas[todasPerguntas.length - 1]) {
+            break;
+        } // código provisório -- scroll até o resultado
+        if (campoPergunta === todasPerguntas[i]) {
+            setTimeout(function () {
+                todasPerguntas[i+1].scrollIntoView({block: "start", behavior: "smooth"});
+            }, 1900);
+        }
+    }
 }
 
 function exibirQuizz (quizz) {
@@ -116,7 +132,7 @@ function entrarQuizz (el) {
     const idQuizz = el.getAttribute("id");
     //console.log(idQuizz);
 
-    const quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
+    quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
     //console.log(quizz);
     window.scrollTo(0, 0);
     exibirQuizz(quizz);
