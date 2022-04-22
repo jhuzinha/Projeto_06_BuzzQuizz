@@ -9,7 +9,7 @@ function listarQuizzes (response) {
     acertos = 0;
     quizzesObj = response.data;
     console.log(quizzesObj);
-    
+
     const quizzes = document.querySelector(".all-quizzes .quizzes");
     for (let i = 0; i < response.data.length; i++) {
         quizzes.innerHTML += `
@@ -49,6 +49,12 @@ function marcarResposta(campoRespostas, el) {
     console.log(acertos);
 }
 
+function removerClique (arrRespostas) {
+    for (let i = 0; i < arrRespostas.length; i++) {
+        arrRespostas[i].removeAttribute("onclick");
+    }
+}
+
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
     const arrRespostas = campoRespostas.querySelectorAll("figure");
@@ -57,6 +63,7 @@ function selecionarResposta (el) {
     }
     el.style.opacity = "1";
 
+    removerClique(arrRespostas);
     marcarResposta(campoRespostas, el);
 }
 
