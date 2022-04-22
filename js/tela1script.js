@@ -56,6 +56,19 @@ function removerClique (arrRespostas) {
     }
 }
 
+function scrollarPergunta (campoPergunta, todasPerguntas) {
+    for (let i = 0; i < todasPerguntas.length; i++) {
+        if (campoPergunta === todasPerguntas[todasPerguntas.length - 1]) {
+            break;
+        } // código provisório -- scroll até o resultado
+        if (campoPergunta === todasPerguntas[i]) {
+            setTimeout(function () {
+                todasPerguntas[i+1].scrollIntoView({block: "start", behavior: "smooth"});
+            }, 1900);
+        }
+    }
+}
+
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
     const campoPergunta = campoRespostas.parentNode;
@@ -69,18 +82,7 @@ function selecionarResposta (el) {
 
     removerClique(arrRespostas);
     marcarResposta(campoRespostas, el);
-
-
-    for (let i = 0; i < todasPerguntas.length; i++) {
-        if (campoPergunta === todasPerguntas[todasPerguntas.length - 1]) {
-            break;
-        } // código provisório -- scroll até o resultado
-        if (campoPergunta === todasPerguntas[i]) {
-            setTimeout(function () {
-                todasPerguntas[i+1].scrollIntoView({block: "start", behavior: "smooth"});
-            }, 1900);
-        }
-    }
+    scrollarPergunta(campoPergunta, todasPerguntas);
 }
 
 function exibirQuizz (quizz) {
