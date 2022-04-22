@@ -1,12 +1,15 @@
 let quizzesObj = [];
+let acertos = 0;
 
 function comparador () { 
 	return Math.random() - 0.5; 
 }
 
 function listarQuizzes (response) {
+    acertos = 0;
     quizzesObj = response.data;
     console.log(quizzesObj);
+    
     const quizzes = document.querySelector(".all-quizzes .quizzes");
     for (let i = 0; i < response.data.length; i++) {
         quizzes.innerHTML += `
@@ -23,7 +26,14 @@ function buscarQuizzes() {
     promise.then(listarQuizzes);
 }
 
-function conferirAcerto(campoRespostas) {
+function conferirAcerto (resposta) {
+    if (resposta.classList.contains("correto")) {
+        return true;
+    }
+    return false;
+}
+
+function marcarResposta(campoRespostas, el) {
     const respostaCorreta = campoRespostas.querySelector(".correto");
     const respostasFalsas = campoRespostas.querySelectorAll(".falso");
 
@@ -33,8 +43,10 @@ function conferirAcerto(campoRespostas) {
         respostasFalsas[i].querySelector("p").style.color = "#FF4B4B";
     }
 
-    console.log(respostaCorreta);
-    console.log(respostasFalsas);
+    if (conferirAcerto(el)) {
+        acertos++;
+    }
+    console.log(acertos);
 }
 
 function selecionarResposta (el) {
@@ -45,7 +57,7 @@ function selecionarResposta (el) {
     }
     el.style.opacity = "1";
 
-    conferirAcerto(campoRespostas);
+    marcarResposta(campoRespostas, el);
 }
 
 function exibirQuizz (quizz) {
@@ -79,7 +91,7 @@ function exibirQuizz (quizz) {
         }
 
         containerTela2.innerHTML += `
-        <section class="question">
+        <section class="question question-number-${i + 1}">
             <div class="question-title" style="background-color:${quizz.questions[i].color};">
                 <h5>${quizz.questions[i].title}</h5>
             </div>
