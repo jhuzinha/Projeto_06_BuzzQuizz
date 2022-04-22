@@ -69,10 +69,14 @@ function calcularNivel () {
     }
 
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
-
     // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
-    console.log(resultadoObj);
     return resultadoObj;
+}
+
+function reiniciarQuizz () {
+    window.scrollTo(0, 0);
+    acertos = 0;
+    exibirQuizz(quizz);
 }
 
 function exibirResultado () {
@@ -90,8 +94,8 @@ function exibirResultado () {
         </div>
     </section>
     <section class="nav-buttons">
-        <button class="button-restart">Reiniciar Quizz</button>
-        <button class="button-home">Voltar para home</button>
+        <button class="button-restart" onclick="reiniciarQuizz()">Reiniciar Quizz</button>
+        <button class="button-home" oncliclk="voltarTelaInicial()">Voltar para home</button>
     </section>`;
 
     setTimeout(function (){

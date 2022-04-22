@@ -293,7 +293,8 @@ header h1 {
     font-size: 19px;
     line-height: 25px;
     font-weight: 700;
-    color: #484848;   
+    color: #484848;
+    word-break: break-word; 
 }
 
 .nav-buttons {
