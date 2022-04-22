@@ -23,6 +23,20 @@ function buscarQuizzes() {
     promise.then(listarQuizzes);
 }
 
+function conferirAcerto(campoRespostas) {
+    const respostaCorreta = campoRespostas.querySelector(".correto");
+    const respostasFalsas = campoRespostas.querySelectorAll(".falso");
+
+    respostaCorreta.querySelector("p").style.color = "#009C22";
+
+    for (let i = 0; i < respostasFalsas.length; i++) {
+        respostasFalsas[i].querySelector("p").style.color = "#FF4B4B";
+    }
+
+    console.log(respostaCorreta);
+    console.log(respostasFalsas);
+}
+
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
     const arrRespostas = campoRespostas.querySelectorAll("figure");
@@ -30,7 +44,8 @@ function selecionarResposta (el) {
         arrRespostas[i].style.opacity = "0.5";
     }
     el.style.opacity = "1";
-    console.log(arrRespostas);
+
+    conferirAcerto(campoRespostas);
 }
 
 function exibirQuizz (quizz) {
