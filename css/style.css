@@ -250,7 +250,7 @@ header h1 {
     width: 330px;
     aspect-ratio: 1;
     /* height: 175px; */
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .answer-text {
@@ -292,7 +292,7 @@ header h1 {
     /* height: 273px; */
     aspect-ratio: 12/9;
     margin-right: 21px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .level p {
