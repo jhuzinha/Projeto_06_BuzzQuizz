@@ -248,7 +248,8 @@ header h1 {
 
 .answer-item img {
     width: 330px;
-    height: 175px;
+    aspect-ratio: 1;
+    /* height: 175px; */
     object-fit: cover;
 }
 
@@ -288,7 +289,8 @@ header h1 {
 
 .level img {
     width: 364px;
-    height: 273px;
+    /* height: 273px; */
+    aspect-ratio: 12/9;
     margin-right: 21px;
     object-fit: cover;
 }
@@ -596,8 +598,10 @@ header h1 {
 
     .answer-item img {
         width: 100%;
-        height: 200px;
-        object-fit: cover;
+        height: auto;
+        aspect-ratio: 1;
+        /* height: 200px; */
+        /* object-fit: cover; */
     }
 
     .answer-text {
@@ -621,9 +625,8 @@ header h1 {
 
     .level img {
         width: 100%;
-        height: 300px;
+        /* height: 300px; */
         margin-bottom: 15px;
-        object-fit: scale-down;
     }
 
     .level p {
