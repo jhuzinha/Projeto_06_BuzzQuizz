@@ -117,7 +117,7 @@ function exibirResultado () {
 }
 
 function scrollarPergunta (campoPergunta, todasPerguntas) {
-    if (cliques === 3) {
+    if (cliques === todasPerguntas.length) {
         exibirResultado();
         return;
     }
