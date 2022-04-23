@@ -78,12 +78,14 @@ function calcularNivel () {
 
 function reiniciarQuizz () {
     acertos = 0;
+    cliques = 0;
     window.scrollTo(0, 0);
     exibirQuizz(quizz);
 }
 
 function voltarTelaInicial () {
     acertos = 0;
+    cliques = 0;
     window.scrollTo(0, 0);
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
@@ -110,25 +112,30 @@ function exibirResultado () {
     </section>`;
 
     setTimeout(function (){
-        document.querySelector(".quizz-results").scrollIntoView({block: "start", behavior: "smooth"});
-    }, 1900)
-
-    console.log("acabou o quizz");
+        document.querySelector(".quizz-results").scrollIntoView({block: "center", behavior: "smooth"});
+    }, 1900);
 }
 
 function scrollarPergunta (campoPergunta, todasPerguntas) {
+    if (cliques === todasPerguntas.length) {
+        exibirResultado();
+        return;
+    }
+
     for (let i = 0; i < todasPerguntas.length; i++) {
         if (campoPergunta === todasPerguntas[todasPerguntas.length - 1]) {
-            exibirResultado();
-            break;
-        } // código provisório -- scroll até o resultado
+            return;
+        }
+
         if (campoPergunta === todasPerguntas[i]) {
             setTimeout(function () {
-                todasPerguntas[i+1].scrollIntoView({block: "start", behavior: "smooth"});
+                todasPerguntas[i+1].scrollIntoView({block: "center", behavior: "smooth"});
             }, 1900);
         }
     }
+
 }
+
 
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
@@ -198,6 +205,11 @@ function entrarQuizz (el) {
     //console.log(quizz);
     window.scrollTo(0, 0);
     exibirQuizz(quizz);
+}
+
+function redirecionarCriacao () {
+    document.querySelector(".container-tela-1").classList.add("hidden");
+    document.querySelector(".infoQuizz").classList.remove("hidden");
 }
 
 buscarQuizzes();
