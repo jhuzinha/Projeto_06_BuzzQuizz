@@ -219,8 +219,8 @@ function verificaUmouOutropreenchido(resposta, url){
     return false;
 }
 
-function renderizarTelaNiveis(){
-    const divPai = document.querySelector(".infoAnswers div");
-    const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
+// function renderizarTelaNiveis(){
+//     const divPai = document.querySelector(".infoAnswers div");
+//     const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
 
-}
+// }

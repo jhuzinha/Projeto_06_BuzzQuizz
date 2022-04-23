@@ -485,6 +485,7 @@ header h1 {
 
 }
 
+
 .successQuizz p:hover {
     color: black;
 }
@@ -664,5 +665,10 @@ header h1 {
     
     .successQuizz figure {
         width: 84%;
+    }
+
+    .descricao {
+        height: 177px;
+        justify-content: flex-start;
     }
 }

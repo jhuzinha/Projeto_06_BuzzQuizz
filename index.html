@@ -65,7 +65,7 @@
 
     <div class="quizCreation"> 
         <div class="spacing"></div>    <!-- espaçamento do header -->    
-        <section class="infoQuizz"> 
+        <section class="infoQuizz hidden"> 
             <h3> Comece pelo começo </h3>
                 <li class="infoAnswers">
                     <div>
@@ -85,7 +85,7 @@
             <button onclick="trocarTela(this, '.levelQuizz')"> Prosseguir pra criar níveis </button>
         </section>
        
-        <section class="levelQuizz hidden">
+        <section class="levelQuizz">
             <h3> Agora, decida os níveis! </h3>
             <div class="container-niveis">
                 <li>
@@ -94,10 +94,10 @@
                         <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
                     </div>
                     <div class="levelAnswersQuizz">
-                        <input placeholder="   Texto da pergunta  "type="text">
-                        <input placeholder="   Cor de fundo da pergunta  "type="text">
-                        <input placeholder="   Resposta correta  "type="text">
-                        <input placeholder="   URL da imagem  "type="url">
+                        <input placeholder="Título do nível"type="text">
+                        <input placeholder="% de acerto mínima  "type="numeric">
+                        <input placeholder="URL da imagem do nível  "type="url">
+                        <input  class= "descricao" placeholder="Descrição do nível  "type="text">
                     </div>
                 </li>
                 <li>
