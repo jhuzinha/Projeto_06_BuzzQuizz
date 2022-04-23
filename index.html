@@ -16,7 +16,7 @@
         <h1>BuzzQuizz</h1>
     </header>
     
-    <div class="container-tela-1">
+    <div class="container-tela-1 hidden">
         <div class="spacing"></div>    <!-- espaçamento do header -->
         <section>
             <div class="empty-user-quizzes">
@@ -63,9 +63,9 @@
         <div class="container-tela-2"></div>
     </div>
 
-    <main class="quizCreation"> 
+    <div class="quizCreation"> 
         <div class="spacing"></div>    <!-- espaçamento do header -->    
-        <section class="infoQuizz hidden"> 
+        <section class="infoQuizz"> 
             <h3> Comece pelo começo </h3>
                 <li class="infoAnswers">
                     <div>
@@ -75,81 +75,45 @@
                         <input placeholder="   Quantidade de níveis do quiz  " type="numeric">
                     </div>
                 </li>
-                <button> Prosseguir pra criar perguntas </button>
+                <button onclick="trocarTela(this, '.questionsQuizz')"> Prosseguir pra criar perguntas </button>
         </section>
         
         <section class="questionsQuizz hidden">
             <h3> Crie suas perguntas </h3>
-            <li>
-                <div class="questionNumber">
-                    <h3>Pergunta 1</h3>
-                    <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
-                </div>
-                <div class="answersQuizz">
-                    <input placeholder="   Texto da pergunta  "type="text">
-                    <input placeholder="   Cor de fundo da pergunta  "type="text">
-                    <h3>Resposta correta</h3>
-                    <input placeholder="   Resposta correta  "type="text">
-                    <input placeholder="   URL da imagem  "type="url">
-                    <h3>Resposta incorretas</h3>
-                    <input placeholder="   Resposta incorreta 1  "type="text">
-                    <input placeholder="   URL da imagem 1  "type="url">
-                    <input class="dividerAnswers" placeholder="   Resposta incorreta 2  "type="text">
-                    <input placeholder="   URL da imagem 2  "type="url">
-                    <input class="dividerAnswers" placeholder="   Resposta incorreta 3  "type="text">
-                    <input placeholder="   URL da imagem 3  "type="url">
-                </div>
-            </li>
-            <li>
-                <div class="questionNumber">
-                    <h3>Pergunta 2</h3>
-                    <img  onclick= "" src="imagens/edit.png" alt="">
-                </div> 
-                <div class="answersQuizz hidden">
-                    <input placeholder="   Texto da pergunta  "type="text">
-                    <input placeholder="   Cor de fundo da pergunta  "type="text">
-                    <h3>Resposta correta</h3>
-                    <input placeholder="   Resposta correta  "type="text">
-                    <input placeholder="   URL da imagem  "type="url">
-                    <h3>Resposta incorretas</h3>
-                    <input placeholder="   Resposta incorreta 1  "type="text">
-                    <input placeholder="   URL da imagem 1  "type="url">
-                    <input class="dividerAnswers" placeholder="   Resposta incorreta 2  "type="text">
-                    <input placeholder="   URL da imagem 2  "type="url">
-                    <input class="dividerAnswers" placeholder="   Resposta incorreta 3  "type="text">
-                    <input placeholder="   URL da imagem 3  "type="url">
-                </div>  
-            </li>
-            <button> Prosseguir pra criar níveis </button>
+            <div class="container-questoes">
+            </div>
+            <button onclick="trocarTela(this, '.levelQuizz')"> Prosseguir pra criar níveis </button>
         </section>
        
         <section class="levelQuizz hidden">
             <h3> Agora, decida os níveis! </h3>
-            <li>
-                <div class="questionNumber">
-                    <h3>Nível 1</h3>
-                    <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
-                </div>
-                <div class="levelAnswersQuizz">
-                    <input placeholder="   Texto da pergunta  "type="text">
-                    <input placeholder="   Cor de fundo da pergunta  "type="text">
-                    <input placeholder="   Resposta correta  "type="text">
-                    <input placeholder="   URL da imagem  "type="url">
-                </div>
-            </li>
-            <li>
-                <div class="questionNumber">
-                    <h3>Nível 2</h3>
-                    <img  onclick= "" src="imagens/edit.png" alt="">
-                </div> 
-                <div class="levelAnswersQuizz hidden">
-                    <input placeholder="   Texto da pergunta  "type="text">
-                    <input placeholder="   Cor de fundo da pergunta  "type="text">
-                    <input placeholder="   Resposta correta  "type="text">
-                    <input placeholder="   URL da imagem  "type="url">
-                </div>  
-            </li>
-            <button> Finalizar Quizz </button>
+            <div class="container-niveis">
+                <li>
+                    <div class="questionNumber">
+                        <h3>Nível 1</h3>
+                        <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
+                    </div>
+                    <div class="levelAnswersQuizz">
+                        <input placeholder="   Texto da pergunta  "type="text">
+                        <input placeholder="   Cor de fundo da pergunta  "type="text">
+                        <input placeholder="   Resposta correta  "type="text">
+                        <input placeholder="   URL da imagem  "type="url">
+                    </div>
+                </li>
+                <li>
+                    <div class="questionNumber">
+                        <h3>Nível 2</h3>
+                        <img  onclick= "" src="imagens/edit.png" alt="">
+                    </div> 
+                    <div class="levelAnswersQuizz hidden">
+                        <input placeholder="   Texto da pergunta  "type="text">
+                        <input placeholder="   Cor de fundo da pergunta  "type="text">
+                        <input placeholder="   Resposta correta  "type="text">
+                        <input placeholder="   URL da imagem  "type="url">
+                    </div>  
+                </li>
+            </div>
+            <button onclick="trocarTela(this, '.successQuizz')"> Finalizar Quizz </button>
         </section>
 
         <section class="successQuizz hidden">
@@ -159,16 +123,16 @@
                 <h4> O quão Potterhead é você </h4>
             </figure>
 
-            <button> Finalizar Quizz </button>
-            <p> Voltar pra Home </p>
+            <button  class="trocarTela(this, '.successQuizz')"> Acessar Quizz </button>
+            <p   onclick="trocarTela(this, '.container-tela-1')"> Voltar pra Home </p>
         </section> 
-    <main>
+    <div>
 
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="./js/tela3script.js"></script>
     <script src="./js/tela1script.js"></script>
-    <script src="./js/script.js"></script>
 </body>
 </html>
