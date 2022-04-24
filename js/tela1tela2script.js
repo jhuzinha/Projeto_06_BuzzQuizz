@@ -91,7 +91,7 @@ function calcularNivel () {
 function reiniciarQuizz () {
     acertos = 0;
     cliques = 0;
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, behavior: "smooth"});
     exibirQuizz(quizz);
 }
 
@@ -100,7 +100,7 @@ function voltarTelaInicial () {
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
-    window.scrollTo({ top: 0});
+    window.scrollTo({top: 0});
     buscarQuizzes();
 }
 
@@ -145,9 +145,7 @@ function scrollarPergunta (campoPergunta, todasPerguntas) {
             }, 1900);
         }
     }
-
 }
-
 
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
@@ -260,7 +258,7 @@ function listarQuizzesUsuario () {
     }
 }
 
-//Essa função vai na promise.then() do quizz criado
+//Essa função vai na promise.then do quizz criado
 function quizzCriadoSucesso (response) {
     salvarLocalStorage(response);
 }
@@ -281,6 +279,5 @@ function salvarLocalStorage (quizzCriado) {
     quizzesUsuario.push(quizzCriado);
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
-
 
 buscarQuizzes();

@@ -177,7 +177,7 @@ header h1 {
 }
 
 .gradient-banner {
-    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57));
+    background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
     width: 100%;
     height: 100%;
     z-index: 1;
