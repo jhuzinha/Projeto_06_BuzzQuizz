@@ -3,6 +3,10 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: auto;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     width: 100%;
@@ -534,6 +538,10 @@ header h1 {
     .quizzes {
         flex-direction: column;
         flex-wrap: nowrap;
+    }
+
+    .quizz-figure {
+        margin: 0 0 15px 0;
     }
 
     .quizz-figure, .quizz-image {

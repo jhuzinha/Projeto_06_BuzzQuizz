@@ -96,6 +96,7 @@ function reiniciarQuizz () {
 }
 
 function voltarTelaInicial () {
+    quizz = "";
     acertos = 0;
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
@@ -164,6 +165,7 @@ function selecionarResposta (el) {
 }
 
 function exibirQuizz (quizz) {
+    console.log(quizz);
     const quizzBanner = document.querySelector(".quizz-banner");
     quizzBanner.innerHTML = "";
     quizzBanner.innerHTML += `
