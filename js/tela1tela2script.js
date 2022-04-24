@@ -76,6 +76,13 @@ function calcularNivel () {
         }
     }
 
+    //Caso não haja um nível com minValue = 0;
+    if (!nivel) {
+        nivel = 0;
+    }
+
+    console.log(`nível ${nivel + 1}`);
+
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
     // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
     return resultadoObj;
@@ -93,7 +100,7 @@ function voltarTelaInicial () {
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0});
     buscarQuizzes();
 }
 
