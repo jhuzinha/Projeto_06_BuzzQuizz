@@ -9,7 +9,6 @@ function comparador () {
 
 function iniciarPagina () {
     window.scrollTo(0,0);
-    teladeCarregamento();
     buscarQuizzes();
 }
 
@@ -313,14 +312,6 @@ function salvarLocalStorage (idQuizzCriado) {
     quizzesUsuario.push(idQuizzCriado);
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
-
-buscarQuizzes();
-
-
-
-
-
-
 
 function teladeCarregamento(){
     const pagCarremento = document.querySelector(".telaCarregamento")
