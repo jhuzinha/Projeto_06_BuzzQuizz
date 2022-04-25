@@ -331,9 +331,10 @@ function limpaVariavel(){
 }
 
 function renderizarSucessoQuizz(){
+    verificador = true;
     const containerSucesso = document.querySelector(".successQuizz figure")
     containerSucesso.innerHTML =   `<img class=" position  " src="${criandoQuiz.image}" alt="">
-    <h4> ${criandoQuiz.title} </h4>`
+    <h4> ${criandoQuiz.title} </h4>`;
 }
 
 function publicarQuiz() {
