@@ -15,19 +15,31 @@ function iniciarPagina () {
 
 function listarQuizzes (response) {
     acertos = 0;
-    quizzesObj = response.data;
-
-    verificarExistenciaQuizzUsuario();
-
     const quizzes = document.querySelector(".all-quizzes .quizzes");
+    let idQuizzesUsuario = JSON.parse(localStorage.getItem("quizzesUsuario"));
+
+    if (!idQuizzesUsuario) {
+        idQuizzesUsuario = [];
+    }
+    
+    verificarExistenciaQuizzUsuario();
+    
     quizzes.innerHTML = "";
     for (let i = 0; i < response.data.length; i++) {
-        quizzes.innerHTML += `
-        <figure class="quizz-figure" id="${response.data[i].id}" onclick="entrarQuizz(this)">
-            <div class="gradient"></div>   
-            <img class="quizz-image" src="${response.data[i].image}">
-            <h4>${response.data[i].title}</h4>
-        </figure>`;
+        let ehUsuario = false;
+        for (let j = 0; j < idQuizzesUsuario.length; j++) {
+            if(response.data[i].id === idQuizzesUsuario[j]) {
+                ehUsuario = true;
+            }
+        }
+        if (!ehUsuario) {
+            quizzes.innerHTML += `
+            <figure class="quizz-figure" id="${response.data[i].id}" onclick="entrarQuizz(this)">
+                <div class="gradient"></div>   
+                <img class="quizz-image" src="${response.data[i].image}">
+                <h4>${response.data[i].title}</h4>
+            </figure>`;
+        }
     }
 }
 
