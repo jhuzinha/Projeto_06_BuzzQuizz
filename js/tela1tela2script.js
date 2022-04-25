@@ -94,10 +94,10 @@ function calcularNivel () {
 }
 
 function reiniciarQuizz () {
-    buscarQuizz(idQuizz);
     acertos = 0;
     cliques = 0;
     window.scrollTo({top: 0, behavior: "smooth"});
+    buscarQuizz(idQuizz);
     
 }
 
@@ -260,6 +260,15 @@ function verificarExistenciaQuizzUsuario () {
     }
 }
 
+function exibirQuizzesUsuario (response) {
+    document.querySelector(".filled-user-quizzes .quizzes").innerHTML += `
+    <figure class="quizz-figure" id="${response.data.id}" onclick="entrarQuizz(this)">
+        <div class="gradient"></div>   
+        <img class="quizz-image" src="${response.data.image}">
+        <h4>${response.data.title}</h4>
+    </figure>`;
+}
+
 function listarQuizzesUsuario () {
 
     const quizzesDoUsuario = document.querySelector(".filled-user-quizzes .quizzes");
@@ -269,22 +278,18 @@ function listarQuizzesUsuario () {
     console.log(quizzesUsuario);
 
     for (let i = 0; i < quizzesUsuario.length; i++) {
-        quizzesDoUsuario.innerHTML += `
-        <figure class="quizz-figure" id="${quizzesUsuario[i].id}" onclick="entrarQuizz(this)">
-            <div class="gradient"></div>   
-            <img class="quizz-image" src="${quizzesUsuario[i].image}">
-            <h4>${quizzesUsuario[i].title}</h4>
-        </figure>`;
+        const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/" + quizzesUsuario[i]);
+        promise.then(exibirQuizzesUsuario);
     }
 }
 
 //Essa função vai na promise.then do quizz criado
 function quizzCriadoSucesso (response) {
-    salvarLocalStorage(response.data);
+    salvarLocalStorage(response.data.id);
     renderizarSucessoQuizz(response.data);
 }
 
-function salvarLocalStorage (quizzCriado) {
+function salvarLocalStorage (idQuizzCriado) {
     let quizzesUsuario;
     
     //Buscar a lista de quizzes criados pelo usuário
@@ -297,7 +302,7 @@ function salvarLocalStorage (quizzCriado) {
     }
 
     //Adicionar o quizz ao local storage
-    quizzesUsuario.push(quizzCriado);
+    quizzesUsuario.push(idQuizzCriado);
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
 
