@@ -44,6 +44,7 @@ function listarQuizzes (response) {
 }
 
 function buscarQuizzes() {
+    teladeCarregamento()
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
     promise.then(listarQuizzes);
     promise.catch(function () {
@@ -121,7 +122,6 @@ function voltarTelaInicial () {
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
     window.scrollTo({top: 0});
-    teladeCarregamento();
     buscarQuizzes();
 }
 
@@ -313,6 +313,13 @@ function salvarLocalStorage (idQuizzCriado) {
     quizzesUsuario.push(idQuizzCriado);
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
+
+buscarQuizzes();
+
+
+
+
+
 
 
 function teladeCarregamento(){
