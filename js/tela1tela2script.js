@@ -1,6 +1,6 @@
-let quizzesObj = [];
 let acertos = 0;
 let cliques = 0;
+let idQuizz;
 let quizz;
 
 function comparador () { 
@@ -94,14 +94,16 @@ function calcularNivel () {
 }
 
 function reiniciarQuizz () {
+    buscarQuizz(idQuizz);
     acertos = 0;
     cliques = 0;
     window.scrollTo({top: 0, behavior: "smooth"});
-    exibirQuizz(quizz);
+    
 }
 
 function voltarTelaInicial () {
     quizz = "";
+    idQuizz = 0;
     acertos = 0;
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
@@ -170,8 +172,8 @@ function selecionarResposta (el) {
     scrollarPergunta(campoPergunta, todasPerguntas);
 }
 
-function exibirQuizz (quizz) {
-    console.log(quizz);
+function exibirQuizz (response) {
+    quizz = response.data;
     const quizzBanner = document.querySelector(".quizz-banner");
     quizzBanner.innerHTML = "";
     quizzBanner.innerHTML += `
@@ -213,18 +215,25 @@ function exibirQuizz (quizz) {
     }
 }
 
+function buscarQuizz (id) {
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/" + id);
+    promise.then(exibirQuizz);
+}
+
 function entrarQuizz (el) {
     teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".successQuizz").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
-    const idQuizz = el.getAttribute("id");
+    idQuizz = el.getAttribute("id");
     console.log(idQuizz);
 
-    quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
-    // console.log(quizz);
-    window.scrollTo(0, 0);
-    exibirQuizz(quizz);
+    // quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
+    // // console.log(quizz);
+    // window.scrollTo(0, 0);
+    // exibirQuizz(quizz);
+
+    buscarQuizz(idQuizz);
 }
 
 function redirecionarCriacao () {
