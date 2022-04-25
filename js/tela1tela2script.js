@@ -10,7 +10,6 @@ function comparador () {
 function listarQuizzes (response) {
     acertos = 0;
     quizzesObj = response.data;
-
     verificarExistenciaQuizzUsuario();
 
     const quizzes = document.querySelector(".all-quizzes .quizzes");
@@ -26,7 +25,7 @@ function listarQuizzes (response) {
 
 function buscarQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
-    promise.then(listarQuizzes);
+    promise.then( listarQuizzes);
     promise.catch(function () {
         alert("Erro ao carregar quizzes!");
         window.location.reload();
@@ -102,6 +101,7 @@ function voltarTelaInicial () {
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
     window.scrollTo({top: 0});
+    teladeCarregamento();
     buscarQuizzes();
 }
 
@@ -208,6 +208,7 @@ function exibirQuizz (quizz) {
 }
 
 function entrarQuizz (el) {
+    teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
     const idQuizz = el.getAttribute("id");
@@ -220,6 +221,7 @@ function entrarQuizz (el) {
 }
 
 function redirecionarCriacao () {
+    teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".infoQuizz").classList.remove("hidden");
 }
@@ -282,4 +284,13 @@ function salvarLocalStorage (quizzCriado) {
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
 
+teladeCarregamento();
 buscarQuizzes();
+
+
+function teladeCarregamento(){
+    const pagCarremento = document.querySelector(".telaCarregamento")
+    pagCarremento.classList.remove("hidden")
+    document.querySelector("html").style.overflow = "hidden"
+    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "initial" }, 1000)
+}
