@@ -13,7 +13,10 @@ function verificaParaQualTelaVai(proximaPag){
     if (proximaPag === '.questionsQuizz'){renderizarTelaQuestionario(); telaInicialQuiz()}
     if (proximaPag === '.levelQuizz') {renderizarTelaNiveis();
         telaQuestionario()}
-    if (proximaPag === '.successQuizz'){renderizarSucessoQuizz(); telaNiveis()}
+    if (proximaPag === '.successQuizz') {
+        // renderizarSucessoQuizz(); 
+        telaNiveis();
+    }
 }
 
 
@@ -330,13 +333,24 @@ function limpaVariavel(){
     }                                
 }
 
-function renderizarSucessoQuizz(){
-    const containerSucesso = document.querySelector(".successQuizz figure")
-    containerSucesso.innerHTML =   `<img class=" position  " src="${criandoQuiz.image}" alt="">
-    <h4> ${criandoQuiz.title} </h4>`
+function renderizarSucessoQuizz(quizzCriado){
+    const containerSucesso = document.querySelector(".successQuizz figure");
+    containerSucesso.setAttribute("id", quizzCriado.id);
+    containerSucesso.setAttribute("onclick", "entrarQuizz(this)");
+    containerSucesso.innerHTML =   `
+        <div class="gradient"></div>
+        <img src="${quizzCriado.image}" alt="">
+        <h4> ${quizzCriado.title} </h4>`;
+    buscarQuizzes();
 }
 
 function publicarQuiz() {
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", criandoQuiz)
     promise.then(quizzCriadoSucesso);
+}
+
+function acessarQuizzCriado () {
+    const el = document.querySelector(".successQuizz figure");
+    entrarQuizz(el);
+    console.log("chamei");
 }
