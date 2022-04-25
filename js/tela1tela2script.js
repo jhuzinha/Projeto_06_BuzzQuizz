@@ -16,9 +16,11 @@ function iniciarPagina () {
 function listarQuizzes (response) {
     acertos = 0;
     quizzesObj = response.data;
+
     verificarExistenciaQuizzUsuario();
 
     const quizzes = document.querySelector(".all-quizzes .quizzes");
+    quizzes.innerHTML = "";
     for (let i = 0; i < response.data.length; i++) {
         quizzes.innerHTML += `
         <figure class="quizz-figure" id="${response.data[i].id}" onclick="entrarQuizz(this)">
@@ -31,7 +33,7 @@ function listarQuizzes (response) {
 
 function buscarQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
-    promise.then( listarQuizzes);
+    promise.then(listarQuizzes);
     promise.catch(function () {
         alert("Erro ao carregar quizzes!");
         window.location.reload();
@@ -70,7 +72,6 @@ function removerClique (arrRespostas) {
 }
 
 function calcularNivel () {
-    // const niveis = quizz.levels.length;
     const perguntas = quizz.questions.length;
     const porcentagem = Math.round((acertos/perguntas)*100);
     let nivel;
@@ -89,7 +90,6 @@ function calcularNivel () {
     console.log(`nível ${nivel + 1}`);
 
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
-    // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
     return resultadoObj;
 }
 
@@ -221,17 +221,13 @@ function buscarQuizz (id) {
 }
 
 function entrarQuizz (el) {
+    window.scrollTo(0,0);
     teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".successQuizz").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
     idQuizz = el.getAttribute("id");
     console.log(idQuizz);
-
-    // quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
-    // // console.log(quizz);
-    // window.scrollTo(0, 0);
-    // exibirQuizz(quizz);
 
     buscarQuizz(idQuizz);
 }
