@@ -481,6 +481,8 @@ header h1 {
 .imagemsucesso img {
     object-fit: cover;
     width: 100%;
+    height: 100%;
+    border-radius: 8px;
 }
 
 .successQuizz h4 {
