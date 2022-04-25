@@ -17,7 +17,11 @@
         <h1>BuzzQuizz</h1>
     </header>
     
-    
+    <div class="telaCarregamento">
+        <div class="spacing"></div>    <!-- espaçamento do header -->
+        <img src="imagens/Spinner-0.9s-200px.svg" alt="">
+        <p>Carregando...</p>
+    </div>
 
 
     <div class="container-tela-1 hidden">
@@ -75,16 +79,16 @@
             <button onclick="trocarTela(this, '.successQuizz')"> Finalizar Quizz </button>
         </section>
 
-        <section class="successQuizz">
+        <section class="successQuizz hidden">
             <h3> Seu quizz está pronto! </h3>
             <figure class="imagemsucesso">
-                <div class="gradient"></div>
+                <!-- <div class="gradient"></div>
                 <img src="./imagens/25297182.jpg" alt="">
-                <h4> O quão Potterhead é você </h4>
+                <h4> O quão Potterhead é você </h4> -->
             </figure>
             
             <button  onclick="acessarQuizzCriado()"> Acessar Quizz </button>
-            <p   onclick="voltarTelaInicial()"> Voltar pra Home </p>
+            <p   onclick="trocarTela(this, '.container-tela-1'), buscarQuizzes()"> Voltar pra Home </p>
             
             
         </section> 

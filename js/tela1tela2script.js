@@ -101,7 +101,7 @@ function voltarTelaInicial () {
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
-    document.querySelector(".successQuizz").classList.add("hidden");
+    // document.querySelector(".successQuizz").classList.add("hidden");
     window.scrollTo({top: 0});
     buscarQuizzes();
 }
