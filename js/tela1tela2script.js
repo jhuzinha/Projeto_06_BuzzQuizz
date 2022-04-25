@@ -232,6 +232,7 @@ function buscarQuizz (id) {
 }
 
 function entrarQuizz (el) {
+    teladeCarregamento();
     window.scrollTo(0,0);
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".successQuizz").classList.add("hidden");
