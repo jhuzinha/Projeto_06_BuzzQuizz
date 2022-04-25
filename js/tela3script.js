@@ -334,6 +334,7 @@ function limpaVariavel(){
 }
 
 function renderizarSucessoQuizz(quizzCriado){
+    teladeCarregamento()
     verificador = true;
     const containerSucesso = document.querySelector(".successQuizz figure");
     containerSucesso.setAttribute("id", quizzCriado.id);
