@@ -295,5 +295,5 @@ function teladeCarregamento(){
     const pagCarremento = document.querySelector(".telaCarregamento")
     pagCarremento.classList.remove("hidden")
     document.querySelector("html").style.overflow = "hidden"
-    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "initial" }, 1000)
+    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "initial" }, 3000)
 }
