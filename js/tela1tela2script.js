@@ -263,7 +263,6 @@ function listarQuizzesUsuario () {
 //Essa função vai na promise.then do quizz criado
 function quizzCriadoSucesso (response) {
     salvarLocalStorage(response);
-    limpaVariavel();
 }
 
 function salvarLocalStorage (quizzCriado) {
