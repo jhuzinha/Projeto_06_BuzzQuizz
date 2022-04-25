@@ -7,6 +7,12 @@ function comparador () {
 	return Math.random() - 0.5; 
 }
 
+function iniciarPagina () {
+    window.scrollTo(0,0);
+    teladeCarregamento();
+    buscarQuizzes();
+}
+
 function listarQuizzes (response) {
     acertos = 0;
     quizzesObj = response.data;
@@ -100,7 +106,6 @@ function voltarTelaInicial () {
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
-    // document.querySelector(".successQuizz").classList.add("hidden");
     window.scrollTo({top: 0});
     teladeCarregamento();
     buscarQuizzes();
@@ -287,18 +292,17 @@ function salvarLocalStorage (quizzCriado) {
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
 
-teladeCarregamento();
-buscarQuizzes();
-
-
-
-
-
-
 
 function teladeCarregamento(){
     const pagCarremento = document.querySelector(".telaCarregamento")
     pagCarremento.classList.remove("hidden")
     document.querySelector("html").style.overflow = "hidden"
-    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "initial" }, 3000)
+    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "auto" }, 3000)
 }
+
+iniciarPagina();
+
+
+
+
+
