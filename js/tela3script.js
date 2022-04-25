@@ -271,10 +271,10 @@ function telaNiveis(){
     }
     if (verificaPorcentagemZero(quantidadeNiveis)){
         verificador = true;
+        publicarQuiz()
     }else {
         alert("Pelo menos um dos campos porcentagem deve ser 0")
     }
-    console.log(criandoQuiz)
 }
 
 function varificaVazio(titulo, url, descricao, porcentagem){
@@ -319,4 +319,9 @@ function renderizarSucessoQuizz(){
     const containerSucesso = document.querySelector(".successQuizz figure")
     containerSucesso.innerHTML =   `<img class=" position " src="${criandoQuiz.image}" alt="">
     <h4> ${criandoQuiz.title} </h4>`
+}
+
+function publicarQuiz() {
+    let promise = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", criandoQuiz)
+    promise.then(()=> console.log("ok"))
 }

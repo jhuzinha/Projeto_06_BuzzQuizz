@@ -470,7 +470,7 @@ header h1 {
     border-radius: 2px;
 }
 
-.successQuizz figure {
+.imagemsucesso {
     height: 300px;
     width:  700px;
     margin: 50px;
@@ -478,7 +478,8 @@ header h1 {
     position: relative;
 }
 
-.successQuizz img {
+.imagemsucesso img {
+    object-fit: cover;
     width: 100%;
 }
 
@@ -671,10 +672,6 @@ header h1 {
 
     .questionsQuizz button, .levelQuizz button, .successQuizz button {
         width: 90%;
-    }
-    
-    .successQuizz figure {
-        width: 84%;
     }
 
     .descricao {
