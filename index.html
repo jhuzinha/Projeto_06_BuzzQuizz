@@ -10,13 +10,14 @@
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./imagens/favicon.png" type="image/png">
 </head>
 <body>
     <header>
         <h1>BuzzQuizz</h1>
     </header>
     
-    <div class="container-tela-1 hidden">
+    <div class="container-tela-1">
         <div class="spacing"></div>    <!-- espaçamento do header -->
         <section>
             <div class="empty-user-quizzes">
@@ -28,28 +29,7 @@
                     <h3>Seus Quizzes</h3>
                     <ion-icon name="add-circle" onclick="redirecionarCriacao()"></ion-icon>
                 </div>
-                <div class="quizzes">
-                    <figure class="quizz-figure">
-                        <div class="gradient"></div>   
-                        <img class="quizz-image" src="./imagens/potterhead.jpg">
-                        <h4>O quão potterhead você é? ein? ein?</h4>
-                    </figure>
-                    <figure class="quizz-figure">
-                        <div class="gradient"></div> 
-                        <img class="quizz-image" src="./imagens/praia.jpg">
-                        <h4>qual praia você é? ein ein ein?</h4>
-                    </figure>
-                    <figure class="quizz-figure">
-                        <div class="gradient"></div>   
-                        <img class="quizz-image" src="./imagens/potterhead.jpg">
-                        <h4>O quão potterhead você é? ein? ein?</h4>
-                    </figure>
-                    <figure class="quizz-figure">
-                        <div class="gradient"></div> 
-                        <img class="quizz-image" src="./imagens/praia.jpg">
-                        <h4>qual praia você é? ein ein ein?</h4>
-                    </figure>
-                </div>
+                <div class="quizzes"></div>
             </div>
         </section>
         <section class="all-quizzes">
@@ -109,6 +89,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="./js/tela3script.js"></script>
-    <script src="./js/tela1script.js"></script>
+    <script src="./js/tela1tela2script.js"></script>
 </body>
 </html>

@@ -10,7 +10,8 @@ function comparador () {
 function listarQuizzes (response) {
     acertos = 0;
     quizzesObj = response.data;
-    console.log(quizzesObj);
+
+    verificarExistenciaQuizzUsuario();
 
     const quizzes = document.querySelector(".all-quizzes .quizzes");
     for (let i = 0; i < response.data.length; i++) {
@@ -26,6 +27,10 @@ function listarQuizzes (response) {
 function buscarQuizzes() {
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
     promise.then(listarQuizzes);
+    promise.catch(function () {
+        alert("Erro ao carregar quizzes!");
+        window.location.reload();
+    });
 }
 
 function conferirAcerto (resposta) {
@@ -71,6 +76,13 @@ function calcularNivel () {
         }
     }
 
+    //Caso não haja um nível com minValue = 0;
+    if (!nivel) {
+        nivel = 0;
+    }
+
+    console.log(`nível ${nivel + 1}`);
+
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
     // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
     return resultadoObj;
@@ -79,16 +91,17 @@ function calcularNivel () {
 function reiniciarQuizz () {
     acertos = 0;
     cliques = 0;
-    window.scrollTo(0, 0);
+    window.scrollTo({top: 0, behavior: "smooth"});
     exibirQuizz(quizz);
 }
 
 function voltarTelaInicial () {
+    quizz = "";
     acertos = 0;
     cliques = 0;
-    window.scrollTo(0, 0);
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
+    window.scrollTo({top: 0});
     buscarQuizzes();
 }
 
@@ -133,9 +146,7 @@ function scrollarPergunta (campoPergunta, todasPerguntas) {
             }, 1900);
         }
     }
-
 }
-
 
 function selecionarResposta (el) {
     const campoRespostas = el.parentNode;
@@ -154,6 +165,7 @@ function selecionarResposta (el) {
 }
 
 function exibirQuizz (quizz) {
+    console.log(quizz);
     const quizzBanner = document.querySelector(".quizz-banner");
     quizzBanner.innerHTML = "";
     quizzBanner.innerHTML += `
@@ -210,6 +222,64 @@ function entrarQuizz (el) {
 function redirecionarCriacao () {
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".infoQuizz").classList.remove("hidden");
+}
+
+//  Quizzes do usuário
+
+function verificarExistenciaQuizzUsuario () {
+    //Se houver algum quizz no local storage, o html deverá ser alterado
+    const quizzesUsuarioVazio = document.querySelector(".empty-user-quizzes");
+    const quizzesUsuarioPreenchido = document.querySelector(".filled-user-quizzes");
+
+    if (localStorage.length === 0) {
+        quizzesUsuarioVazio.classList.remove("hidden");
+        quizzesUsuarioPreenchido.classList.add("hidden");
+    }
+    if (localStorage.length != 0) {
+        listarQuizzesUsuario();
+        quizzesUsuarioVazio.classList.add("hidden");
+        quizzesUsuarioPreenchido.classList.remove("hidden");
+    }
+}
+
+function listarQuizzesUsuario () {
+
+    const quizzesDoUsuario = document.querySelector(".filled-user-quizzes .quizzes");
+    quizzesDoUsuario.innerHTML = "";
+
+    const quizzesUsuario = JSON.parse(localStorage.getItem("quizzesUsuario"));
+    console.log(quizzesUsuario);
+
+    for (let i = 0; i < quizzesUsuario.length; i++) {
+        quizzesDoUsuario.innerHTML += `
+        <figure class="quizz-figure" id="${quizzesUsuario[i].id}" onclick="entrarQuizz(this)">
+            <div class="gradient"></div>   
+            <img class="quizz-image" src="${quizzesUsuario[i].image}">
+            <h4>${quizzesUsuario[i].title}</h4>
+        </figure>`;
+    }
+}
+
+//Essa função vai na promise.then do quizz criado
+function quizzCriadoSucesso (response) {
+    salvarLocalStorage(response);
+}
+
+function salvarLocalStorage (quizzCriado) {
+    let quizzesUsuario;
+    
+    //Buscar a lista de quizzes criados pelo usuário
+    if (!localStorage.getItem("quizzesUsuario")) {
+        //Se não houver quizz, criar uma array vazia;
+        quizzesUsuario = [];
+    } else {
+        //Se houver algum quizz, transformar a string em array;
+        quizzesUsuario = JSON.parse(localStorage.getItem("quizzesUsuario"));
+    }
+
+    //Adicionar o quizz ao local storage
+    quizzesUsuario.push(quizzCriado);
+    localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
 
 buscarQuizzes();
