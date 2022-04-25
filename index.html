@@ -43,7 +43,7 @@
         <div class="container-tela-2"></div>
     </div>
 
-    <div class="quizCreation"> 
+    <div class="quizCreation "> 
         <div class="spacing"></div>    <!-- espaçamento do header -->    
         <section class="infoQuizz hidden"> 
             <h3> Comece pelo começo </h3>
@@ -68,37 +68,13 @@
         <section class="levelQuizz hidden">
             <h3> Agora, decida os níveis! </h3>
             <div class="container-niveis">
-                <li>
-                    <div class="questionNumber">
-                        <h3>Nível 1</h3>
-                        <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
-                    </div>
-                    <div class="levelAnswersQuizz">
-                        <input placeholder="Título do nível"type="text">
-                        <input placeholder="% de acerto mínima  "type="numeric">
-                        <input placeholder="URL da imagem do nível  "type="url">
-                        <input  class= "descricao" placeholder="Descrição do nível  "type="text">
-                    </div>
-                </li>
-                <li>
-                    <div class="questionNumber">
-                        <h3>Nível 2</h3>
-                        <img  onclick= "" src="imagens/edit.png" alt="">
-                    </div> 
-                    <div class="levelAnswersQuizz hidden">
-                        <input placeholder="   Texto da pergunta  "type="text">
-                        <input placeholder="   Cor de fundo da pergunta  "type="text">
-                        <input placeholder="   Resposta correta  "type="text">
-                        <input placeholder="   URL da imagem  "type="url">
-                    </div>  
-                </li>
             </div>
             <button onclick="trocarTela(this, '.successQuizz')"> Finalizar Quizz </button>
         </section>
 
         <section class="successQuizz hidden">
             <h3> Seu quizz está pronto! </h3>
-            <figure>
+            <figure class="imagemsucesso">
                 <img class=" position " src="imagens/imagem-teste.png" alt="">
                 <h4> O quão Potterhead é você </h4>
             </figure>

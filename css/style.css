@@ -405,6 +405,7 @@ header h1 {
 }
 
 .container-questoes, .container-niveis{
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -469,15 +470,16 @@ header h1 {
     border-radius: 2px;
 }
 
-.successQuizz figure {
-    height: auto;
+.imagemsucesso {
+    height: 300px;
     width:  700px;
     margin: 50px;
     border-radius: 8px;
     position: relative;
 }
 
-.successQuizz img {
+.imagemsucesso img {
+    object-fit: cover;
     width: 100%;
 }
 
@@ -670,10 +672,6 @@ header h1 {
 
     .questionsQuizz button, .levelQuizz button, .successQuizz button {
         width: 90%;
-    }
-    
-    .successQuizz figure {
-        width: 84%;
     }
 
     .descricao {
