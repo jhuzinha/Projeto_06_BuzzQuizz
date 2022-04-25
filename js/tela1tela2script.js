@@ -291,6 +291,11 @@ teladeCarregamento();
 buscarQuizzes();
 
 
+
+
+
+
+
 function teladeCarregamento(){
     const pagCarremento = document.querySelector(".telaCarregamento")
     pagCarremento.classList.remove("hidden")
