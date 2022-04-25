@@ -323,5 +323,5 @@ function renderizarSucessoQuizz(){
 
 function publicarQuiz() {
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", criandoQuiz)
-    promise.then(()=> console.log("ok"))
+    promise.then(quizzCriadoSucesso);
 }
