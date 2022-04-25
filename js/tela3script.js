@@ -1,6 +1,5 @@
 let questionarioAberto = '';
 let verificador = false;
-let verificadorQuestionario = false;
 let criandoQuiz = { 
                     title: '',
                     image: '',
@@ -315,13 +314,29 @@ function verificaPorcentagemZero(quantidadeNiveis){
     }
 }
 
+
+function limpaVariavel(){
+    questionarioAberto = '';
+    verificador = false;
+    criandoQuiz = { 
+                    title: '',
+                    image: '',
+                    questions: [],
+                    levels: []
+                                    }
+    let inputs = document.querySelectorAll("input");
+    for (let i = 0; inputs.length > i; i++){
+        inputs[i].value = ''
+    }                                
+}
+
 function renderizarSucessoQuizz(){
     const containerSucesso = document.querySelector(".successQuizz figure")
-    containerSucesso.innerHTML =   `<img class=" position " src="${criandoQuiz.image}" alt="">
+    containerSucesso.innerHTML =   `<img class=" position  " src="${criandoQuiz.image}" alt="">
     <h4> ${criandoQuiz.title} </h4>`
 }
 
 function publicarQuiz() {
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", criandoQuiz)
-    promise.then(()=> console.log("ok"))
+    promise.then( )
 }
