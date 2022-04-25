@@ -232,9 +232,9 @@ function renderizarTelaNiveis(){
         <li class="container${z+1}  ">
             <div class="questionNumber">
                 <h3>Nível ${z+1} </h3>
-                <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
+                <img class= ""  onclick= "abrindoQuestionario(this)" src="imagens/edit.png" alt="">
             </div>
-            <div class="levelAnswersQuizz">
+            <div class="levelAnswersQuizz hidden">
                 <input placeholder="Título do nível"type="text">
                 <input placeholder="% de acerto mínima  "type="numeric">
                 <input placeholder="URL da imagem do nível  "type="url">
