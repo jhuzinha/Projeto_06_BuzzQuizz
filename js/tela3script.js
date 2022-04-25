@@ -11,10 +11,10 @@ let criandoQuiz = {
 // TELA 3 - BOTOES
 
 function verificaParaQualTelaVai(proximaPag){
-    if (proximaPag === '.questionsQuizz'){
-        renderizarTelaQuestionario();
-        telaInicialQuiz()}
-    if (proximaPag === '.levelQuizz') {telaQuestionario()}
+    if (proximaPag === '.questionsQuizz'){renderizarTelaQuestionario(); telaInicialQuiz()}
+    if (proximaPag === '.levelQuizz') {renderizarTelaNiveis();
+        telaQuestionario()}
+    if (proximaPag === '.successQuizz'){renderizarSucessoQuizz(); telaNiveis()}
 }
 
 
@@ -91,13 +91,13 @@ function telaInicialQuiz() {
     const quantidadeQuestoes = divPai.querySelector("input:nth-child(3)").value;
     const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
     verificaTela1(quantidadeQuestoes, quantidadeNiveis, titulo, URL);
+
 }
 
 function renderizarTelaQuestionario(){
     const divPai = document.querySelector(".infoAnswers div");
     const quantidadeQuestoes = divPai.querySelector("input:nth-child(3)").value;
     let divPaiQuestions = document.querySelector(".container-questoes");
-    console.log(divPaiQuestions)
     divPaiQuestions.innerHTML = '';
     for (let i = 0; quantidadeQuestoes > i; i++){
         divPaiQuestions.innerHTML += `
@@ -219,8 +219,104 @@ function verificaUmouOutropreenchido(resposta, url){
     return false;
 }
 
-// function renderizarTelaNiveis(){
-//     const divPai = document.querySelector(".infoAnswers div");
-//     const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
+function renderizarTelaNiveis(){
+    const divPai = document.querySelector(".infoAnswers div");
+    const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
+    let containerNiveis = document.querySelector(".container-niveis");
+    containerNiveis.innerHTML = '';
+    for (let z = 0; quantidadeNiveis > z; z++){
+        console.log(z)
+        containerNiveis.innerHTML += `            
+        <li class="container${z+1}  ">
+            <div class="questionNumber">
+                <h3>Nível ${z+1} </h3>
+                <img class= "hidden"  onclick= "" src="imagens/edit.png" alt="">
+            </div>
+            <div class="levelAnswersQuizz">
+                <input placeholder="Título do nível"type="text">
+                <input placeholder="% de acerto mínima  "type="numeric">
+                <input placeholder="URL da imagem do nível  "type="url">
+                <input  class= "descricao" placeholder="Descrição do nível  "type="text">
+            </div>
+        </li>`
+    }
 
-// }
+}
+
+function telaNiveis(){
+    console.log("oi")
+    criandoQuiz.levels = []
+    const divPai = document.querySelector(".infoAnswers div");
+    const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
+    for (let i = 0; quantidadeNiveis > i; i++){
+        const respostasniveis = document.querySelector(`.container${i+1}`)
+        let titulo = respostasniveis.querySelector("input:nth-child(1)").value;
+        let porcentagem = respostasniveis.querySelector("input:nth-child(2)").value;
+        let url = respostasniveis.querySelector("input:nth-child(3)").value;
+        let descricao = respostasniveis.querySelector("input:nth-child(4)").value;
+        niveis = {
+                title: titulo,
+				image: url,
+				text: descricao,
+				minValue: porcentagem
+        }
+        console.log("sla")
+
+        if (verificaDescricaoNiveis(descricao) && verificaPorcentagemNiveis(porcentagem) && verificaURL(url) && varificaVazio(titulo, url, descricao, porcentagem)){
+            criandoQuiz.levels.push(niveis);
+            console.log("ok")
+        } else { 
+            return alert("preencha corretamente os campos")
+        }
+    }
+    if (verificaPorcentagemZero(quantidadeNiveis)){
+        verificador = true;
+    }else {
+        alert("Pelo menos um dos campos porcentagem deve ser 0")
+    }
+    console.log(criandoQuiz)
+}
+
+function varificaVazio(titulo, url, descricao, porcentagem){
+    if (titulo !==  '' && verificaURL(url) && descricao !== '' && porcentagem !== ''){
+        return true;
+    }
+
+}
+
+function verificaTituloNiveis(input){
+    if (input.length < 10 || input === ''){
+        return false;
+    }
+    return true;
+}
+
+function verificaPorcentagemNiveis(input){
+    input = Number(input)
+    if (Number(input) > 100 || Number(input) < 0 || input === ''  || !Number.isInteger(input)) {
+        return false;
+    }
+    return true;
+}
+
+function verificaDescricaoNiveis(input){
+    if (input.length < 30 || input === ''){
+        return false
+    }
+    return true;
+}
+
+function verificaPorcentagemZero(quantidadeNiveis){
+    for (let i = 0; quantidadeNiveis > i; i++){
+        console.log(criandoQuiz.levels[i].minValue)
+        if (criandoQuiz.levels[i].minValue === '0'){
+            return true;
+        }
+    }
+}
+
+function renderizarSucessoQuizz(){
+    const containerSucesso = document.querySelector(".successQuizz figure")
+    containerSucesso.innerHTML =   `<img class=" position " src="${criandoQuiz.image}" alt="">
+    <h4> ${criandoQuiz.title} </h4>`
+}

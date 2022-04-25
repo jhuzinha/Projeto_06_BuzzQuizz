@@ -399,6 +399,7 @@ header h1 {
 }
 
 .container-questoes, .container-niveis{
+    height: auto;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -464,7 +465,7 @@ header h1 {
 }
 
 .successQuizz figure {
-    height: auto;
+    height: 300px;
     width:  700px;
     margin: 50px;
     border-radius: 8px;
