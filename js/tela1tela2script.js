@@ -323,8 +323,3 @@ function teladeCarregamento(){
 }
 
 iniciarPagina();
-
-
-
-
-
