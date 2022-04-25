@@ -50,7 +50,7 @@
         <div class="container-tela-2"></div>
     </div>
 
-    <div class="quizCreation "> 
+    <div class="quizCreation"> 
         <div class="spacing"></div>    <!-- espaçamento do header -->    
         <section class="infoQuizz hidden"> 
             <h3> Comece pelo começo </h3>
@@ -82,12 +82,15 @@
         <section class="successQuizz hidden">
             <h3> Seu quizz está pronto! </h3>
             <figure class="imagemsucesso">
-                <div class="gradient"></div>
+                <!-- <div class="gradient"></div>
                 <img src="./imagens/25297182.jpg" alt="">
-                <h4> O quão Potterhead é você </h4>
+                <h4> O quão Potterhead é você </h4> -->
             </figure>
-            <button  class="trocarTela(this, '.successQuizz')"> Acessar Quizz </button>
-            <p   onclick="trocarTela(this, '.container-tela-1')"> Voltar pra Home </p>
+            
+            <button  onclick="acessarQuizzCriado()"> Acessar Quizz </button>
+            <p   onclick="trocarTela(this, '.container-tela-1'), buscarQuizzes()"> Voltar pra Home </p>
+            
+            
         </section> 
     <div>
 

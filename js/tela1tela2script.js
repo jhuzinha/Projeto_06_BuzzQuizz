@@ -100,6 +100,7 @@ function voltarTelaInicial () {
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
+    // document.querySelector(".successQuizz").classList.add("hidden");
     window.scrollTo({top: 0});
     teladeCarregamento();
     buscarQuizzes();
@@ -210,12 +211,13 @@ function exibirQuizz (quizz) {
 function entrarQuizz (el) {
     teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
+    document.querySelector(".successQuizz").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
     const idQuizz = el.getAttribute("id");
-    //console.log(idQuizz);
+    console.log(idQuizz);
 
     quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
-    //console.log(quizz);
+    // console.log(quizz);
     window.scrollTo(0, 0);
     exibirQuizz(quizz);
 }
@@ -265,6 +267,7 @@ function listarQuizzesUsuario () {
 //Essa função vai na promise.then do quizz criado
 function quizzCriadoSucesso (response) {
     salvarLocalStorage(response.data);
+    renderizarSucessoQuizz(response.data);
 }
 
 function salvarLocalStorage (quizzCriado) {
