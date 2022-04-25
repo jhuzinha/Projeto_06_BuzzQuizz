@@ -74,7 +74,6 @@ function marcarResposta(campoRespostas, el) {
     }
 
     cliques++;
-    console.log(acertos);
 }
 
 function removerClique (arrRespostas) {
@@ -99,7 +98,6 @@ function calcularNivel () {
         nivel = 0;
     }
 
-    console.log(`nível ${nivel + 1}`);
 
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
     return resultadoObj;
@@ -238,7 +236,6 @@ function entrarQuizz (el) {
     document.querySelector(".successQuizz").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
     idQuizz = el.getAttribute("id");
-    console.log(idQuizz);
 
     buscarQuizz(idQuizz);
 }

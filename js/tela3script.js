@@ -14,7 +14,6 @@ function verificaParaQualTelaVai(proximaPag){
     if (proximaPag === '.levelQuizz') {renderizarTelaNiveis();
         telaQuestionario()}
     if (proximaPag === '.successQuizz') {
-        // renderizarSucessoQuizz(); 
         telaNiveis();
     }
 }
@@ -191,7 +190,6 @@ function telaQuestionario(){
             }
         
         }
-        console.log(criandoQuiz)
         if (criandoQuiz.questions[i].answers.length < 2){
             return alert("Preencha os campos corretamente")
         }
@@ -227,7 +225,6 @@ function renderizarTelaNiveis(){
     let containerNiveis = document.querySelector(".container-niveis");
     containerNiveis.innerHTML = '';
     for (let z = 0; quantidadeNiveis > z; z++){
-        console.log(z)
         containerNiveis.innerHTML += `            
         <li class="container${z+1}  ">
             <div class="questionNumber">
@@ -246,7 +243,6 @@ function renderizarTelaNiveis(){
 }
 
 function telaNiveis(){
-    console.log("oi")
     criandoQuiz.levels = []
     const divPai = document.querySelector(".infoAnswers div");
     const quantidadeNiveis = divPai.querySelector("input:nth-child(4)").value;
@@ -262,11 +258,10 @@ function telaNiveis(){
 				text: descricao,
 				minValue: porcentagem
         }
-        console.log("sla")
 
         if (verificaDescricaoNiveis(descricao) && verificaPorcentagemNiveis(porcentagem) && verificaURL(url) && varificaVazio(titulo, url, descricao, porcentagem)){
             criandoQuiz.levels.push(niveis);
-            console.log("ok")
+
         } else { 
             return alert("preencha corretamente os campos")
         }
@@ -310,7 +305,6 @@ function verificaDescricaoNiveis(input){
 
 function verificaPorcentagemZero(quantidadeNiveis){
     for (let i = 0; quantidadeNiveis > i; i++){
-        console.log(criandoQuiz.levels[i].minValue)
         if (criandoQuiz.levels[i].minValue === '0'){
             return true;
         }
@@ -354,5 +348,4 @@ function publicarQuiz() {
 function acessarQuizzCriado () {
     const el = document.querySelector(".successQuizz figure");
     entrarQuizz(el);
-    console.log("chamei");
 }
