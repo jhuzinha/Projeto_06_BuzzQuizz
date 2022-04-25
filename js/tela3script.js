@@ -334,7 +334,6 @@ function limpaVariavel(){
 }
 
 function renderizarSucessoQuizz(quizzCriado){
-    teladeCarregamento()
     verificador = true;
     const containerSucesso = document.querySelector(".successQuizz figure");
     containerSucesso.setAttribute("id", quizzCriado.id);
@@ -347,6 +346,7 @@ function renderizarSucessoQuizz(quizzCriado){
 }
 
 function publicarQuiz() {
+    teladeCarregamento();
     let promise = axios.post("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes", criandoQuiz)
     promise.then(quizzCriadoSucesso);
 }
