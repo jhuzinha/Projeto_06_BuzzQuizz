@@ -3,10 +3,6 @@
     box-sizing: border-box;
 }
 
-html {
-    overflow-x: auto;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     width: 100%;

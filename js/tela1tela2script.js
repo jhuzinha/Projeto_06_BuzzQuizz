@@ -1,32 +1,52 @@
-let quizzesObj = [];
 let acertos = 0;
 let cliques = 0;
+let idQuizz;
 let quizz;
 
 function comparador () { 
 	return Math.random() - 0.5; 
 }
 
+function iniciarPagina () {
+    window.scrollTo(0,0);
+    teladeCarregamento();
+    buscarQuizzes();
+}
+
 function listarQuizzes (response) {
     acertos = 0;
-    quizzesObj = response.data;
-    verificarExistenciaQuizzUsuario();
-
     const quizzes = document.querySelector(".all-quizzes .quizzes");
+    let idQuizzesUsuario = JSON.parse(localStorage.getItem("quizzesUsuario"));
+
+    if (!idQuizzesUsuario) {
+        idQuizzesUsuario = [];
+    }
+    
+    verificarExistenciaQuizzUsuario();
+    
+    quizzes.innerHTML = "";
     for (let i = 0; i < response.data.length; i++) {
-        quizzes.innerHTML += `
-        <figure class="quizz-figure" id="${response.data[i].id}" onclick="entrarQuizz(this)">
-            <div class="gradient"></div>   
-            <img class="quizz-image" src="${response.data[i].image}">
-            <h4>${response.data[i].title}</h4>
-        </figure>`;
+        let ehUsuario = false;
+        for (let j = 0; j < idQuizzesUsuario.length; j++) {
+            if(response.data[i].id === idQuizzesUsuario[j]) {
+                ehUsuario = true;
+            }
+        }
+        if (!ehUsuario) {
+            quizzes.innerHTML += `
+            <figure class="quizz-figure" id="${response.data[i].id}" onclick="entrarQuizz(this)">
+                <div class="gradient"></div>   
+                <img class="quizz-image" src="${response.data[i].image}">
+                <h4>${response.data[i].title}</h4>
+            </figure>`;
+        }
     }
 }
 
 function buscarQuizzes() {
     teladeCarregamento()
     const promise = axios.get('https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes');
-    promise.then( listarQuizzes);
+    promise.then(listarQuizzes);
     promise.catch(function () {
         alert("Erro ao carregar quizzes!");
         window.location.reload();
@@ -65,7 +85,6 @@ function removerClique (arrRespostas) {
 }
 
 function calcularNivel () {
-    // const niveis = quizz.levels.length;
     const perguntas = quizz.questions.length;
     const porcentagem = Math.round((acertos/perguntas)*100);
     let nivel;
@@ -84,7 +103,6 @@ function calcularNivel () {
     console.log(`nível ${nivel + 1}`);
 
     const resultadoObj = {porcentagem: porcentagem, nivelIndex: nivel};
-    // console.log(`niveis: ${niveis}\nperguntas: ${perguntas}\nacertos: ${acertos}\nporcentagem: ${porcentagem}%`);
     return resultadoObj;
 }
 
@@ -92,16 +110,17 @@ function reiniciarQuizz () {
     acertos = 0;
     cliques = 0;
     window.scrollTo({top: 0, behavior: "smooth"});
-    exibirQuizz(quizz);
+    buscarQuizz(idQuizz);
+    
 }
 
 function voltarTelaInicial () {
     quizz = "";
+    idQuizz = 0;
     acertos = 0;
     cliques = 0;
     document.querySelector(".container-tela-1").classList.remove("hidden");
     document.querySelector(".tela-2").classList.add("hidden");
-    // document.querySelector(".successQuizz").classList.add("hidden");
     window.scrollTo({top: 0});
     buscarQuizzes();
 }
@@ -165,8 +184,8 @@ function selecionarResposta (el) {
     scrollarPergunta(campoPergunta, todasPerguntas);
 }
 
-function exibirQuizz (quizz) {
-    console.log(quizz);
+function exibirQuizz (response) {
+    quizz = response.data;
     const quizzBanner = document.querySelector(".quizz-banner");
     quizzBanner.innerHTML = "";
     quizzBanner.innerHTML += `
@@ -208,18 +227,21 @@ function exibirQuizz (quizz) {
     }
 }
 
+function buscarQuizz (id) {
+    const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/" + id);
+    promise.then(exibirQuizz);
+}
+
 function entrarQuizz (el) {
+    window.scrollTo(0,0);
     teladeCarregamento();
     document.querySelector(".container-tela-1").classList.add("hidden");
     document.querySelector(".successQuizz").classList.add("hidden");
     document.querySelector(".tela-2").classList.remove("hidden");
-    const idQuizz = el.getAttribute("id");
+    idQuizz = el.getAttribute("id");
     console.log(idQuizz);
 
-    quizz = quizzesObj.filter((quizz) => quizz.id == idQuizz)[0];
-    // console.log(quizz);
-    window.scrollTo(0, 0);
-    exibirQuizz(quizz);
+    buscarQuizz(idQuizz);
 }
 
 function redirecionarCriacao () {
@@ -246,6 +268,15 @@ function verificarExistenciaQuizzUsuario () {
     }
 }
 
+function exibirQuizzesUsuario (response) {
+    document.querySelector(".filled-user-quizzes .quizzes").innerHTML += `
+    <figure class="quizz-figure" id="${response.data.id}" onclick="entrarQuizz(this)">
+        <div class="gradient"></div>   
+        <img class="quizz-image" src="${response.data.image}">
+        <h4>${response.data.title}</h4>
+    </figure>`;
+}
+
 function listarQuizzesUsuario () {
 
     const quizzesDoUsuario = document.querySelector(".filled-user-quizzes .quizzes");
@@ -255,22 +286,18 @@ function listarQuizzesUsuario () {
     console.log(quizzesUsuario);
 
     for (let i = 0; i < quizzesUsuario.length; i++) {
-        quizzesDoUsuario.innerHTML += `
-        <figure class="quizz-figure" id="${quizzesUsuario[i].id}" onclick="entrarQuizz(this)">
-            <div class="gradient"></div>   
-            <img class="quizz-image" src="${quizzesUsuario[i].image}">
-            <h4>${quizzesUsuario[i].title}</h4>
-        </figure>`;
+        const promise = axios.get("https://mock-api.driven.com.br/api/v6/buzzquizz/quizzes/" + quizzesUsuario[i]);
+        promise.then(exibirQuizzesUsuario);
     }
 }
 
 //Essa função vai na promise.then do quizz criado
 function quizzCriadoSucesso (response) {
-    salvarLocalStorage(response.data);
+    salvarLocalStorage(response.data.id);
     renderizarSucessoQuizz(response.data);
 }
 
-function salvarLocalStorage (quizzCriado) {
+function salvarLocalStorage (idQuizzCriado) {
     let quizzesUsuario;
     
     //Buscar a lista de quizzes criados pelo usuário
@@ -283,7 +310,7 @@ function salvarLocalStorage (quizzCriado) {
     }
 
     //Adicionar o quizz ao local storage
-    quizzesUsuario.push(quizzCriado);
+    quizzesUsuario.push(idQuizzCriado);
     localStorage.setItem("quizzesUsuario", JSON.stringify(quizzesUsuario));
 }
 
@@ -299,5 +326,12 @@ function teladeCarregamento(){
     const pagCarremento = document.querySelector(".telaCarregamento")
     pagCarremento.classList.remove("hidden")
     document.querySelector("html").style.overflow = "hidden"
-    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "initial" }, 3000)
+    setTimeout(() => {pagCarremento.classList.add("hidden"); document.querySelector("html").style.overflow = "auto" }, 3000)
 }
+
+iniciarPagina();
+
+
+
+
+
